@@ -67,14 +67,17 @@
 
         /* Full Screen Edit Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .modal-body { background: white; width: 95%; max-width: 850px; max-height: 90vh; overflow-y: auto; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .modal-body { background: white; width: 95%; max-width: 900px; max-height: 90vh; overflow-y: auto; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .search-box { padding: 10px; font-size: 14px; border: 2px solid var(--primary); border-radius: 8px; margin-bottom: 12px; }
+        
+        .info-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+        .info-card h4 { margin: 0 0 8px 0; color: #047857; font-size: 14px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 4px; }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <h2>গ্রীন পল্লবী সঞ্চয় (GPS) Portal</h2>
+    <h2>গ্রীন পল্লবী সঞ্চয় (GPS-2024) Portal</h2>
     <div id="user-status" class="hidden">
         <span id="welcome-msg" style="margin-right:10px; font-weight:bold; font-size: 12px;"></span>
         <button onclick="logout()" class="btn-logout">লগআউট</button>
@@ -430,73 +433,98 @@
             <button onclick="closeProfileModal()" style="background:#374151;">✕ বন্ধ করুন</button>
         </div>
 
+        <!-- মেম্বার ব্যালেন্স ও সামারি রিভিউ -->
+        <div class="grid-4" style="margin-bottom:15px;">
+            <div class="stat-box">
+                <h3>মোট সঞ্চয় जमा</h3>
+                <p id="mod-disp-balance">৳ ০</p>
+            </div>
+            <div class="stat-box">
+                <h3>শেয়ার সংখ্যা</h3>
+                <p id="mod-disp-shares">০ টি</p>
+            </div>
+            <div class="stat-box" style="background:#f0fdf4; border-left-color:#16a34a;">
+                <h3 style="color:#15803d;">২০২৪-২৫ প্রফিট</h3>
+                <p id="mod-disp-profit">৳ ০</p>
+            </div>
+            <div class="stat-box" style="background:#fffbe0; border-left-color:#d97706;">
+                <h3 style="color:#b45309;">করযে হাসানা বকেয়া</h3>
+                <p id="mod-disp-qard" style="color:#b45309;">৳ ০</p>
+            </div>
+        </div>
+
         <div class="grid-2">
             <div>
-                <h3 style="margin-top:0; color:#047857;">প্রোফাইল তথ্য সংশোধন</h3>
-                <input type="hidden" id="mod-mem-id">
+                <div class="info-card">
+                    <h4>প্রোফাইল মূল তথ্য সংশোধন</h4>
+                    <input type="hidden" id="mod-mem-id">
 
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>সদস্যের নাম*</label>
-                        <input type="text" id="mod-mem-name">
+                    <div class="grid-form">
+                        <div class="form-group">
+                            <label>সদস্যের নাম*</label>
+                            <input type="text" id="mod-mem-name">
+                        </div>
+                        <div class="form-group">
+                            <label>মোবাইল নম্বর*</label>
+                            <input type="tel" id="mod-mem-phone">
+                        </div>
+                        <div class="form-group">
+                            <label>শেয়ার সংখ্যা*</label>
+                            <input type="number" id="mod-mem-shares" min="1">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>মোবাইল নম্বর*</label>
-                        <input type="tel" id="mod-mem-phone">
+
+                    <div class="grid-form">
+                        <div class="form-group">
+                            <label>২০২৪ সালের প্রফিট (৳)</label>
+                            <input type="number" id="mod-mem-p2024">
+                        </div>
+                        <div class="form-group">
+                            <label>২০২৫ সালের প্রফিট (৳)</label>
+                            <input type="number" id="mod-mem-p2025">
+                        </div>
                     </div>
+
+                    <div class="grid-form">
+                        <div class="form-group">
+                            <label>NID No</label>
+                            <input type="text" id="mod-mem-nid">
+                        </div>
+                        <div class="form-group">
+                            <label>জন্ম তারিখ</label>
+                            <input type="date" id="mod-mem-dob">
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label>শেয়ার সংখ্যা*</label>
-                        <input type="number" id="mod-mem-shares" min="1">
+                        <label>ঠিকানা</label>
+                        <input type="text" id="mod-mem-address">
                     </div>
                 </div>
 
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>২০২৪ সালের প্রফিট (৳)</label>
-                        <input type="number" id="mod-mem-p2024">
-                    </div>
-                    <div class="form-group">
-                        <label>২০২৫ সালের প্রফিট (৳)</label>
-                        <input type="number" id="mod-mem-p2025">
-                    </div>
-                </div>
-
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>NID No</label>
-                        <input type="text" id="mod-mem-nid">
-                    </div>
-                    <div class="form-group">
-                        <label>জন্ম তারিখ</label>
-                        <input type="date" id="mod-mem-dob">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>ঠিকানা</label>
-                    <input type="text" id="mod-mem-address">
-                </div>
-
-                <div class="grid-form">
-                    <div class="form-group">
-                        <label>নমিনীর নাম</label>
-                        <input type="text" id="mod-nom-name">
-                    </div>
-                    <div class="form-group">
-                        <label>নমিনীর মোবাইল</label>
-                        <input type="tel" id="mod-nom-phone">
+                <div class="info-card">
+                    <h4>নমিনি সম্পর্কিত তথ্য</h4>
+                    <div class="grid-form">
+                        <div class="form-group">
+                            <label>নমিনীর নাম</label>
+                            <input type="text" id="mod-nom-name">
+                        </div>
+                        <div class="form-group">
+                            <label>নমিনীর মোবাইল</label>
+                            <input type="tel" id="mod-nom-phone">
+                        </div>
                     </div>
                 </div>
 
                 <div style="display:flex; gap:10px; margin-top:15px;">
-                    <button onclick="saveMemberProfileChanges()" style="flex:1; background:#059669;">আপডেট সেভ করুন</button>
-                    <button onclick="deleteMemberAccount()" class="btn-danger" style="padding:10px;">সদস্য রিমুভ করুন</button>
+                    <button onclick="saveMemberProfileChanges()" style="flex:1; background:#059669; padding:11px;">আপডেট সেভ করুন</button>
+                    <button onclick="deleteMemberAccount()" class="btn-danger" style="padding:11px;">সদস্য রিমুভ করুন</button>
                 </div>
             </div>
 
             <div>
-                <h3 style="margin-top:0; color:#047857;">এই সদস্যের ব্যক্তিগত লেনদেন লেজার</h3>
-                <div class="table-responsive" style="max-height: 380px; overflow-y: auto;">
+                <h3 style="margin-top:0; color:#047857;">এই সদস্যের সকল লেনদেন লেজার</h3>
+                <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
                     <table>
                         <thead>
                             <tr>
@@ -530,9 +558,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // ১০০ জন মেম্বারের মূল এক্সেল ডাটাবেজ
-    const initialExcelMembers = {"1": {"name": "SAJEDUL ISLAM RIFAT (SIR)", "phone": "01717872761", "sharesCount": 2, "profit2024": 5718.0, "profit2025": 19295.0, "balance": 319013.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "2": {"name": "MD. NOYON ISLAM", "phone": "01786583825", "sharesCount": 2, "profit2024": 4000.0, "profit2025": 14198.0, "balance": 98000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "3": {"name": "MD. ALAMIN ISLAM", "phone": "01408748859", "sharesCount": 2, "profit2024": 6873.0, "profit2025": 17534.0, "balance": -1966.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "4": {"name": "MD. SHUVO SIDDIKI", "phone": "01568260895", "sharesCount": 2, "profit2024": 4042.0, "profit2025": 9754.0, "balance": 86996.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "5": {"name": "MD. RIMON ISLAM", "phone": "01820101499", "sharesCount": 1, "profit2024": 850.0, "profit2025": 578.0, "balance": 928.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "6": {"name": "MD.SHAKIL AHMED", "phone": "01823637424", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "7": {"name": "MD. SHAWON CHOWDHURY", "phone": "01601614141", "sharesCount": 3, "profit2024": 4109.0, "profit2025": 9663.0, "balance": 15272.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "8": {"name": "MD. PARVEJ MIA", "phone": "01841423027", "sharesCount": 1, "profit2024": 643.0, "profit2025": 590.0, "balance": 7233.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "9": {"name": "SUMAIYA SHARMIN (SUMI)", "phone": "01916969585", "sharesCount": 1, "profit2024": 2519.0, "profit2025": 5563.0, "balance": 106082.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "10": {"name": "SUHAIYA SHARMIN (ACHIA)", "phone": "01408748859", "sharesCount": 1, "profit2024": 1675.0, "profit2025": 3813.0, "balance": 43988.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "11": {"name": "MR. SABBIR AHMED", "phone": "01781348536", "sharesCount": 2, "profit2024": 593.0, "profit2025": 0.0, "balance": 593.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "12": {"name": "MD. SAIMUN SIFAT", "phone": "01581039451", "sharesCount": 1, "profit2024": 1006.0, "profit2025": 780.0, "balance": 780.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "13": {"name": "MD. AKRAM MOLLAH", "phone": "01580897473", "sharesCount": 1, "profit2024": 110.0, "profit2025": 100.0, "balance": 1210.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "14": {"name": "MD. AFSARUL KORIM (SUFOL)", "phone": "01889061205", "sharesCount": 1, "profit2024": 510.0, "profit2025": 1106.0, "balance": 14616.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "15": {"name": "MD. MONJURUL ISLAM HRIDOY", "phone": "01909266988", "sharesCount": 1, "profit2024": 1880.0, "profit2025": 7668.0, "balance": 53548.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "16": {"name": "SURAIYA SHARMIN SRABONI", "phone": "01408748859", "sharesCount": 1, "profit2024": 1675.0, "profit2025": 2796.0, "balance": 35471.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "17": {"name": "MD. ALAMIN ISLAM (BSB)", "phone": "01908671909", "sharesCount": 1, "profit2024": 369.0, "profit2025": 688.0, "balance": 1057.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "18": {"name": "MD. HRIDOY", "phone": "01765631502", "sharesCount": 1, "profit2024": 356.0, "profit2025": 163.0, "balance": 1519.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "19": {"name": "SHREE JOY KUMAR MOHONTO", "phone": "01825238567", "sharesCount": 1, "profit2024": 216.0, "profit2025": 189.0, "balance": 405.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "20": {"name": "MUJAHIDUL ISLAM JONY", "phone": "01860725600", "sharesCount": 1, "profit2024": 176.0, "profit2025": 972.0, "balance": 296.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "21": {"name": "AIRIN ISLAM", "phone": "01860725600", "sharesCount": 1, "profit2024": 175.0, "profit2025": 973.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "22": {"name": "FABIA SIRAT ROJA", "phone": "01642685126", "sharesCount": 1, "profit2024": 832.0, "profit2025": 481.0, "balance": 481.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "23": {"name": "UMME KULSUM RUNA", "phone": "01917662605", "sharesCount": 1, "profit2024": 133.0, "profit2025": 0.0, "balance": 1133.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "24": {"name": "ARIFUJJAMAN RAKIB", "phone": "01685105249", "sharesCount": 2, "profit2024": 1022.0, "profit2025": 2079.0, "balance": 37101.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "25": {"name": "ROBIUL ISLAM", "phone": "01941053683", "sharesCount": 1, "profit2024": 125.0, "profit2025": 197.0, "balance": 322.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "26": {"name": "KAZI JAHIDUL ISLAM ROCKY", "phone": "01643140222", "sharesCount": 1, "profit2024": 215.0, "profit2025": 1159.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "27": {"name": "MD. ABDUL AJAD", "phone": "01983039679", "sharesCount": 1, "profit2024": 162.0, "profit2025": 695.0, "balance": 1857.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "28": {"name": "MD. MOFIJUL ISLAM", "phone": "01894071171", "sharesCount": 1, "profit2024": 66.0, "profit2025": 0.0, "balance": 7066.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "29": {"name": "MRS. SUFIA AKTAR", "phone": "01894071171", "sharesCount": 1, "profit2024": 65.0, "profit2025": 0.0, "balance": 7065.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "30": {"name": "MD. SHAKIL HOSSAIN", "phone": "01862066500", "sharesCount": 1, "profit2024": 207.0, "profit2025": 82.0, "balance": 82.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "31": {"name": "MD. RAISUL ISLAM OPI", "phone": "01875411711", "sharesCount": 1, "profit2024": 66.0, "profit2025": 0.0, "balance": 66.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "32": {"name": "ABU BOKKOR SIDDIK", "phone": "01642670453", "sharesCount": 1, "profit2024": 113.0, "profit2025": 101.0, "balance": 2214.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "33": {"name": "ABDUL RAHMAN IBNE SIFAT", "phone": "01717872761", "sharesCount": 2, "profit2024": 3891.0, "profit2025": 0.0, "balance": 73891.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "34": {"name": "MD. SHAHIDUL ISLAM", "phone": "01911184320", "sharesCount": 1, "profit2024": 636.0, "profit2025": 2662.0, "balance": 23298.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "35": {"name": "MD. FOYSAL HOSSAIN", "phone": "01931837644", "sharesCount": 1, "profit2024": 100.0, "profit2025": 916.0, "balance": 23016.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "36": {"name": "MD. HABIBUR RAHMAN (HABIB)", "phone": "01799665553", "sharesCount": 1, "profit2024": 14.0, "profit2025": 82.0, "balance": 96.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "37": {"name": "MD. ROBIN", "phone": "060172894157", "sharesCount": 1, "profit2024": 227.0, "profit2025": 490.0, "balance": 717.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "38": {"name": "AZIZUL ISLAM RABBY", "phone": "01628576149", "sharesCount": 1, "profit2024": 11.0, "profit2025": 196.0, "balance": 5207.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "39": {"name": "ABDUL MANNAN HASAN", "phone": "01642321809", "sharesCount": 1, "profit2024": 52.0, "profit2025": 373.0, "balance": 29425.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "40": {"name": "SADIYA", "phone": "01951682782", "sharesCount": 1, "profit2024": 0.0, "profit2025": 382.0, "balance": 382.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "41": {"name": "MD. FARUK MONDOL", "phone": "01642685126", "sharesCount": 1, "profit2024": 0.0, "profit2025": 382.0, "balance": 382.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "42": {"name": "MD. ALOMGIR HOSSAIN", "phone": "01913587092", "sharesCount": 2, "profit2024": 302.0, "profit2025": 2600.0, "balance": 3902.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "43": {"name": "MOINUL ISLAM MUGDHO", "phone": "01715522216", "sharesCount": 1, "profit2024": 13.0, "profit2025": 276.0, "balance": 5289.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "44": {"name": "ABDULLAH AL MAMUN", "phone": "01951259460", "sharesCount": 2, "profit2024": 42.0, "profit2025": 590.0, "balance": 590.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "45": {"name": "MD. NAYEEM HOSSEN", "phone": "01938553686", "sharesCount": 1, "profit2024": 87.0, "profit2025": 819.0, "balance": 44906.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "46": {"name": "NURUL AMIN RAFI", "phone": "01782252831", "sharesCount": 1, "profit2024": 8.0, "profit2025": 195.0, "balance": 12425.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "47": {"name": "AFIA ISLAM HUMAIRA", "phone": "01833031513", "sharesCount": 1, "profit2024": 9.0, "profit2025": 389.0, "balance": 32898.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "48": {"name": "MD. NAYEEM ISLAM", "phone": "01301376324", "sharesCount": 1, "profit2024": 9.0, "profit2025": 389.0, "balance": 23898.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "49": {"name": "SHEIKH TANVIR TUTUL", "phone": "01969464594", "sharesCount": 2, "profit2024": 18.0, "profit2025": 555.0, "balance": 28573.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "50": {"name": "FORHAD HOSSAIN", "phone": "01909266988", "sharesCount": 1, "profit2024": 0.0, "profit2025": 181.0, "balance": 10181.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "51": {"name": "MD.NASIR UDDIN AMIN ULLAH", "phone": "01616948239", "sharesCount": 2, "profit2024": 182.0, "profit2025": 2030.0, "balance": 73161.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "52": {"name": "MD.MAHABUB BALI", "phone": "01781742509", "sharesCount": 2, "profit2024": 5.0, "profit2025": 1093.0, "balance": 1098.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "53": {"name": "MD TAMIM", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 224.0, "balance": 30224.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "54": {"name": "MD YASIN ARAFATH", "phone": "01903539263", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 98000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "55": {"name": "MST NARGIS BEGUM", "phone": "01839-891490", "sharesCount": 1, "profit2024": 0.0, "profit2025": 78.0, "balance": 1078.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "56": {"name": "MD MAIN UDDIN", "phone": "01839-891490", "sharesCount": 1, "profit2024": 0.0, "profit2025": 78.0, "balance": 1078.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "57": {"name": "MD NAIMUL ISLAM", "phone": "01915787566", "sharesCount": 1, "profit2024": 0.0, "profit2025": 20.0, "balance": 2020.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "58": {"name": "ABDULLAH AL MAMUN (ALAMIN MAMA)", "phone": "01952759033", "sharesCount": 2, "profit2024": 0.0, "profit2025": 30.0, "balance": 2030.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "59": {"name": "MD. SUMON ISLAM", "phone": "01753785065", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 1000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "60": {"name": "MD. EASIN UDDIN", "phone": "01675649964", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 7000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "61": {"name": "MD MAMUN HOSSAIN", "phone": "01889993518", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 3000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "62": {"name": "MD EKABBER ALI", "phone": "01965511325", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 20000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "63": {"name": "ANTARA SHARMA", "phone": "01716720526", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 32000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "64": {"name": "ABRAR SHAFIN", "phone": "01733441618", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 32000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "65": {"name": "IMRAN AL MAMUN", "phone": "01912217892", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 102000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "66": {"name": "SHAHIDUL ISLAM", "phone": "01710641334", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 18000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "67": {"name": "MD BADRUL ALOM OVI", "phone": "01978168199", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 1000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "68": {"name": "A.K.AM DOLATUJJAMAN", "phone": "01717298229", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 30000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "69": {"name": "MD ANOWER KHAN", "phone": "01930013066", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 7000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "70": {"name": "ASIF ISLAM", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 9000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "71": {"name": "MD ABDUL HALIM", "phone": "01755482756", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 36000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "72": {"name": "MD MONZURUL HASAN KHANDKER", "phone": "01719815187", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 12000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "73": {"name": "MONOARA AKTER", "phone": "01726880303", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 12000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "74": {"name": "SHAKIL HOSSAIN", "phone": "01837676540", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 25000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "75": {"name": "ABDULLAH JAFI KAJOL", "phone": "01913004727", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 14000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "76": {"name": "JAHID HASAN", "phone": "01857869699", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 10000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "77": {"name": "TAWSIFUL ISLAM CHOWDHURI SAIF", "phone": "01531808292", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 8000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "78": {"name": "MD YASIN (GOLD)", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 4000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "79": {"name": "ARIFUR RAHMAN", "phone": "01625269092", "sharesCount": 4, "profit2024": 0.0, "profit2025": 0.0, "balance": 20000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "80": {"name": "MD LABIB", "phone": "01715580399", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 2000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "81": {"name": "MAWLANA JOYNAL ABEDIN", "phone": "01673989846", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 3000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "82": {"name": "MD KAMRUL HASAN", "phone": "01833541464", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 32000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "83": {"name": "MD.JAHANGIR HOSSAIN", "phone": "01912-972295", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 9000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "84": {"name": "MD.JONAYED ISLAM", "phone": "01986049135", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 2000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "85": {"name": "MD.JAKARIA KHANDKHER", "phone": "01716489998", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 7000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "86": {"name": "HASAN MOHAMMED YUSUF", "phone": "01913027454", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 3000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "87": {"name": "MD OMOR FARUK", "phone": "01625834022", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 3000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "88": {"name": "MD KAMAL HOSSAIN", "phone": "01922430692", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 2000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "89": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "90": {"name": "AROOBA ZANNAT RAHNUMA", "phone": "01719002356", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 1000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "91": {"name": "KAZI ROKIBUL HASAN", "phone": "01614645681", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 9000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "92": {"name": "MD JAHIDUL ISLAM", "phone": "", "sharesCount": 2, "profit2024": 0.0, "profit2025": 0.0, "balance": 2000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "93": {"name": "SAIFUL ISLAM", "phone": "01912153892", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 1000.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "94": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "95": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "96": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "97": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "98": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "99": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}, "100": {"name": "N/A", "phone": "", "sharesCount": 1, "profit2024": 0.0, "profit2025": 0.0, "balance": 0.0, "pass": "", "isActivated": false, "nid": "N/A", "dob": "N/A", "address": "N/A", "nomineeName": "N/A", "nomineePhone": "N/A", "nomineeNid": "N/A", "photo": "https://via.placeholder.com/65"}};
-
     let globalMembers = {};
     let globalTxs = [];
     let globalInvestments = {};
@@ -559,7 +584,7 @@
         if (sessionData) {
             const parsed = JSON.parse(sessionData);
             const now = new Date().getTime();
-            if (now - parsed.timestamp < 30 * 60 * 1000) {
+            if (now - parsed.timestamp < 60 * 60 * 1000) {
                 currentLoggedInUser = parsed.user;
                 if (currentLoggedInUser.role === 'admin') showAdminDashboard();
                 else showMemberDashboard();
@@ -575,16 +600,15 @@
         globalTxs = data.transactions || [];
         globalInvestments = data.investments || {};
 
-        if (Object.keys(globalMembers).length < 100) {
-            db.ref('gps_data/members').set(initialExcelMembers);
-            globalMembers = initialExcelMembers;
-        }
-
         checkSession();
 
         if (currentLoggedInUser && currentLoggedInUser.role === 'admin') {
             renderAdminData();
             renderInvestmentData();
+            const openModalId = document.getElementById('mod-mem-id').value;
+            if (openModalId && !document.getElementById('member-profile-modal').classList.contains('hidden')) {
+                openMemberEditModal(openModalId);
+            }
         } else if (currentLoggedInUser && currentLoggedInUser.role === 'member') {
             showMemberDashboard();
         }
@@ -666,7 +690,6 @@
         renderInvestmentData();
     }
 
-    /* নতুন সদস্য এনরোলমেন্ট */
     function createNewMember() {
         const id = document.getElementById('new-mem-id').value.trim();
         const name = document.getElementById('new-mem-name').value.trim();
@@ -699,7 +722,6 @@
         });
     }
 
-    /* সদস্য অনুসন্ধান (Search) */
     function filterMembersTable() {
         const query = document.getElementById('search-member-input').value.toLowerCase().trim();
         const rows = document.querySelectorAll('#adm-member-table tr');
@@ -714,9 +736,10 @@
         });
     }
 
-    /* আলাদা মোডাল/উইন্ডোতে প্রোফাইল ওপেন ও এডিটিং */
     function openMemberEditModal(id) {
         const m = globalMembers[id];
+        if(!m) return;
+        
         document.getElementById('mod-mem-title').innerText = `সদস্য প্রোফাইল ও লেনদেন (GPS-${id})`;
         document.getElementById('mod-mem-id').value = id;
         document.getElementById('mod-mem-name').value = m.name || '';
@@ -725,21 +748,29 @@
         document.getElementById('mod-mem-p2024').value = m.profit2024 || 0;
         document.getElementById('mod-mem-p2025').value = m.profit2025 || 0;
         document.getElementById('mod-mem-nid').value = m.nid || '';
-        document.getElementById('mod-mem-dob').value = m.dob || '';
-        document.getElementById('mod-mem-address').value = m.address || '';
-        document.getElementById('mod-nom-name').value = m.nomineeName || '';
-        document.getElementById('mod-nom-phone').value = m.nomineePhone || '';
+        document.getElementById('mod-mem-dob').value = (m.dob && m.dob !== 'N/A') ? m.dob : '';
+        document.getElementById('mod-mem-address').value = (m.address && m.address !== 'N/A') ? m.address : '';
+        document.getElementById('mod-nom-name').value = (m.nomineeName && m.nomineeName !== 'N/A') ? m.nomineeName : '';
+        document.getElementById('mod-nom-phone').value = (m.nomineePhone && m.nomineePhone !== 'N/A') ? m.nomineePhone : '';
+
+        document.getElementById('mod-disp-balance').innerText = `৳ ${(m.balance || 0).toLocaleString()}`;
+        document.getElementById('mod-disp-shares').innerText = `${m.sharesCount || 1} টি`;
+        document.getElementById('mod-disp-profit').innerText = `৳ ${((m.profit2024 || 0) + (m.profit2025 || 0)).toLocaleString()}`;
+        document.getElementById('mod-disp-qard').innerText = `৳ ${(m.qardBalance || 0).toLocaleString()}`;
 
         renderMemberSpecificTransactions(id);
         document.getElementById('member-profile-modal').classList.remove('hidden');
     }
 
     function closeProfileModal() {
+        document.getElementById('mod-mem-id').value = '';
         document.getElementById('member-profile-modal').classList.add('hidden');
     }
 
     function saveMemberProfileChanges() {
         const id = document.getElementById('mod-mem-id').value;
+        if (!id) return;
+
         const updatedData = {
             name: document.getElementById('mod-mem-name').value.trim(),
             phone: document.getElementById('mod-mem-phone').value.trim(),
@@ -754,27 +785,62 @@
         };
 
         db.ref(`gps_data/members/${id}`).update(updatedData).then(() => {
-            alert(`GPS-${id} সদস্যের প্রোফাইল সফলভাবে আপডেট করা হয়েছে!`);
+            alert(`GPS-${id} সদস্যের প্রোফাইল তথ্য সফলভাবে আপডেট করা হয়েছে!`);
         });
     }
 
     function deleteMemberAccount() {
         const id = document.getElementById('mod-mem-id').value;
-        if (confirm(`আপনি কি নিশ্চিত যে GPS-${id} সদস্যকে সিস্টেম থেকে সম্পূর্ণ রিমুভ করে দিতে চান?`)) {
+        if (!id) return;
+        
+        if (confirm(`আপনি কি নিশ্চিত যে GPS-${id} সদস্যকে সিস্টেম থেকে রিমুভ করে দিতে চান?`)) {
+            // Delete member and associated transactions
+            const newTxs = globalTxs.filter(t => t.memberId !== id);
+            
             db.ref(`gps_data/members/${id}`).remove().then(() => {
-                alert('সদস্য একাউন্ট ডিলিট করা হয়েছে!');
-                closeProfileModal();
+                db.ref('gps_data/transactions').set(newTxs).then(() => {
+                    alert('সদস্য একাউন্ট এবং তার সমস্ত রেকর্ড ডিলিট করা হয়েছে!');
+                    closeProfileModal();
+                });
             });
         }
     }
 
-    /* ওই সদস্যের নিজস্ব লেনদেন দেখা ও এডিট/ডিলিট করা */
+    function recalculateMemberBalances() {
+        // Safety function to recalculate all member balances based on globalTxs
+        let balances = {};
+        let qardBalances = {};
+        
+        for (let id in globalMembers) {
+            balances[id] = 0;
+            qardBalances[id] = 0;
+        }
+
+        globalTxs.forEach(t => {
+            if (balances[t.memberId] !== undefined) {
+                if (t.type === 'Deposit') balances[t.memberId] += t.amount;
+                else if (t.type === 'Withdraw') balances[t.memberId] -= t.amount;
+                else if (t.type === 'Qard_Given') qardBalances[t.memberId] += t.amount;
+                else if (t.type === 'Qard_Repaid') qardBalances[t.memberId] -= t.amount;
+            }
+        });
+
+        let updates = {};
+        for (let id in globalMembers) {
+            updates[`gps_data/members/${id}/balance`] = balances[id];
+            updates[`gps_data/members/${id}/qardBalance`] = qardBalances[id];
+        }
+        db.ref().update(updates);
+    }
+
     function renderMemberSpecificTransactions(memId) {
         const table = document.getElementById('mod-mem-tx-table');
         table.innerHTML = '';
 
+        let count = 0;
         globalTxs.forEach((t, idx) => {
             if (t.memberId === memId) {
+                count++;
                 let badgeClass = 'badge-dep';
                 let typeLabel = 'জমা';
                 if (t.type === 'Withdraw') { badgeClass = 'badge-wit'; typeLabel = 'উত্তোলন'; }
@@ -795,27 +861,24 @@
                 `;
             }
         });
+
+        if (count === 0) {
+            table.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#6b7280;">কোনো লেনদেনের রেকর্ড পাওয়া যায়নি</td></tr>`;
+        }
     }
 
     function editSingleTransaction(index) {
         const t = globalTxs[index];
+        if (!t) return;
+
         const newAmountStr = prompt("নতুন টাকার পরিমাণ লিখুন:", t.amount);
         if (newAmountStr !== null) {
             const newAmount = parseInt(newAmountStr);
             if (!isNaN(newAmount) && newAmount > 0) {
-                const diff = newAmount - t.amount;
-                const mem = globalMembers[t.memberId];
-                let currentBal = mem.balance || 0;
-
-                if (t.type === 'Deposit') currentBal += diff;
-                else if (t.type === 'Withdraw') currentBal -= diff;
-
-                db.ref(`gps_data/members/${t.memberId}`).update({ balance: currentBal });
-                
                 globalTxs[index].amount = newAmount;
                 db.ref('gps_data/transactions').set(globalTxs).then(() => {
+                    recalculateMemberBalances();
                     alert('লেনদেন এডিট ও আপডেট সফল হয়েছে!');
-                    renderMemberSpecificTransactions(t.memberId);
                 });
             }
         }
@@ -823,19 +886,14 @@
 
     function deleteSingleTransaction(index) {
         const t = globalTxs[index];
+        if (!t) return;
+
         if (confirm("আপনি কি নিশ্চিত যে এই লেনদেনটি সম্পূর্ণ মুছে ফেলতে চান?")) {
-            const mem = globalMembers[t.memberId];
-            let currentBal = mem.balance || 0;
-
-            if (t.type === 'Deposit') currentBal -= t.amount;
-            else if (t.type === 'Withdraw') currentBal += t.amount;
-
-            db.ref(`gps_data/members/${t.memberId}`).update({ balance: currentBal });
-
+            const memId = t.memberId;
             globalTxs.splice(index, 1);
             db.ref('gps_data/transactions').set(globalTxs).then(() => {
+                recalculateMemberBalances();
                 alert('লেনদেনটি সফলভাবে মুছে ফেলা হয়েছে!');
-                renderMemberSpecificTransactions(t.memberId);
             });
         }
     }
@@ -909,26 +967,14 @@
         const amount = parseInt(document.getElementById('adm-tx-amount').value);
         const note = document.getElementById('adm-tx-note').value.trim();
 
+        if (!memId) return alert('সদস্য নির্বাচন করুন');
         if (!amount || amount <= 0) return alert('সঠিক টাকার পরিমাণ দিন');
         if (!selectedDate) return alert('তারিখ নির্বাচন করুন');
 
-        const mem = globalMembers[memId];
-        let currentBal = mem.balance || 0;
-        let currentQard = mem.qardBalance || 0;
-
-        if (type === 'Deposit') currentBal += amount;
-        else if (type === 'Withdraw') currentBal -= amount;
-        else if (type === 'Qard_Given') currentQard += amount;
-        else if (type === 'Qard_Repaid') currentQard -= amount;
-
-        db.ref(`gps_data/members/${memId}`).update({
-            balance: currentBal,
-            qardBalance: currentQard
-        });
-        
         let updatedTxs = [...globalTxs, { date: selectedDate, memberId: memId, type: type, amount: amount, note: note }];
         db.ref('gps_data/transactions').set(updatedTxs).then(() => {
-            alert('অনলাইনে লেনদেন সফলভাবে আপডেট করা হয়েছে!');
+            recalculateMemberBalances();
+            alert('অনলাইনে লেনদেন সফলভাবে সেভ করা হয়েছে!');
             document.getElementById('adm-tx-amount').value = '';
             document.getElementById('adm-tx-note').value = '';
         });
@@ -953,6 +999,11 @@
             totalCollected: 0
         }).then(() => {
             alert('ইনভেস্টমেন্ট যুক্ত হয়েছে!');
+            document.getElementById('inv-project-name').value = '';
+            document.getElementById('inv-user-name').value = '';
+            document.getElementById('inv-user-phone').value = '';
+            document.getElementById('inv-capital').value = '';
+            document.getElementById('inv-profit').value = '';
         });
     }
 
@@ -995,6 +1046,7 @@
         
         const memId = currentLoggedInUser.id;
         const mem = globalMembers[memId];
+        if (!mem) return;
 
         document.getElementById('welcome-msg').innerText = `স্বাগতম, ${mem.name}`;
         document.getElementById('mem-my-name').innerText = mem.name;
